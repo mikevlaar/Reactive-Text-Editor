@@ -18,7 +18,7 @@ namespace Reactive_Text_Editor
         ArrayList list = new ArrayList();
         int a = 0;
         int b = 0;
-        int c = a.CombineLatest(a, b) => return a+b);
+        int c = a. CombineLatest(a, b) => return a+b);
 
         static IObservable<TResult> ObsExpr<T1, T2, TResult>
           (IObservable<T1> o1, IObservable<T2> o2, Func<T1, T2, TResult> func)
