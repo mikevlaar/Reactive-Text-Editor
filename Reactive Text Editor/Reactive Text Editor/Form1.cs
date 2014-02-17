@@ -21,7 +21,7 @@ namespace Reactive_Text_Editor
         Subject<int> a = new Subject<int>();
         Subject<int> b = new Subject<int>();
         IObservable<int> c = new Subject<int>();
-
+        //hoi michel
         public void test()
         {
             c = a.CombineLatest(b, (x, y) => x + y);
