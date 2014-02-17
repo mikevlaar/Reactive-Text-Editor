@@ -25,19 +25,22 @@ namespace Reactive_Text_Editor
         public void test()
         {
             c = a.CombineLatest(b, (x, y) => x + y);
-            c.Subscribe(z =>  textBox4.Text = z.ToString()); 
+            c.Subscribe(z => { 
+                textBox4.Text = z.ToString();
+            }); 
         }
 
         public Form1()
         {
             InitializeComponent();
             test();
+            addWords();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void addWords()
         {
             list.Add("hallo");
-            list.Add("piet");
+            list.Add("reactive");
             list.Add("jan");
             list.Add("michel");
         }
