@@ -72,6 +72,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(47, 20);
             this.textBox2.TabIndex = 3;
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // textBox3
             // 
@@ -79,12 +80,13 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(56, 20);
             this.textBox3.TabIndex = 4;
+            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // textBox4
             // 
             this.textBox4.Location = new System.Drawing.Point(178, 277);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(50, 20);
+            this.textBox4.Size = new System.Drawing.Size(185, 20);
             this.textBox4.TabIndex = 5;
             // 
             // label1

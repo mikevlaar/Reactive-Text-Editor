@@ -10,26 +10,28 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Reactive;
 using System.Reactive.Linq;
+using System.Reactive.Subjects;
+using System.Text.RegularExpressions;
 
 namespace Reactive_Text_Editor
 {
     public partial class Form1 : Form
     {
         ArrayList list = new ArrayList();
-        int a = 0;
-        int b = 0;
-        int c = a. CombineLatest(a, b) => return a+b);
+        Subject<int> a = new Subject<int>();
+        Subject<int> b = new Subject<int>();
+        IObservable<int> c = new Subject<int>();
 
-        static IObservable<TResult> ObsExpr<T1, T2, TResult>
-          (IObservable<T1> o1, IObservable<T2> o2, Func<T1, T2, TResult> func)
+        public void test()
         {
-          return o1.CombineLatest(o2, func);
+            c = a.CombineLatest(b, (x, y) => x + y);
+            c.Subscribe(z =>  textBox4.Text = z.ToString()); 
         }
-
 
         public Form1()
         {
             InitializeComponent();
+            test();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -68,6 +70,34 @@ namespace Reactive_Text_Editor
         {
             textBox1.Text = listBox1.Items[listBox1.SelectedIndex].ToString();
             hideResults();
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            int number = 0;
+            if (textBox2.Text == "")
+            {
+                a.OnNext(number);
+            }
+            else
+            {
+                number = int.Parse(textBox2.Text);
+                a.OnNext(number);
+            }
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            int number = 0;
+            if (textBox3.Text == "")
+            {
+                b.OnNext(number);
+            }
+            else
+            {
+                number = int.Parse(textBox3.Text);
+                b.OnNext(number);
+            }
         }
 
     }
