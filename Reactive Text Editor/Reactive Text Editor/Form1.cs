@@ -18,22 +18,22 @@ namespace Reactive_Text_Editor
     public partial class Form1 : Form
     {
         ArrayList list = new ArrayList();
-        Subject<int> a = new Subject<int>();
         Subject<int> b = new Subject<int>();
-        IObservable<int> c = new Subject<int>();
+        Subject<int> c = new Subject<int>();
+        IObservable<int> a = new Subject<int>();
         
-        public void test()
+        public void initializeSubscribers()
         {
-            c = a.CombineLatest(b, (x, y) => x + y);
-            c.Subscribe(z => { 
-                textBox4.Text = z.ToString();
+            a = b.CombineLatest(c, (x, y) => x + y);
+            a.Subscribe(z => { 
+                textBoxA.Text = z.ToString();
             }); 
         }
 
         public Form1()
         {
             InitializeComponent();
-            test();
+            initializeSubscribers();
             addWords();
         }
 
@@ -47,8 +47,8 @@ namespace Reactive_Text_Editor
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            listBox1.Items.Clear();
-            if (textBox1.Text.Length == 0)
+            assumptionsListBox.Items.Clear();
+            if (reactiveTextBox.Text.Length == 0)
             {
                 hideResults();
                 return;
@@ -56,50 +56,50 @@ namespace Reactive_Text_Editor
 
             foreach (String s in list)
             {
-                if (s.Contains(textBox1.Text))
+                if (s.Contains(reactiveTextBox.Text))
                 {
-                    listBox1.Items.Add(s);
-                    listBox1.Visible = true;
+                    assumptionsListBox.Items.Add(s);
+                    assumptionsListBox.Visible = true;
                 }
             }
         }
 
         void hideResults()
         {
-            listBox1.Visible = false;
+            assumptionsListBox.Visible = false;
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            textBox1.Text = listBox1.Items[listBox1.SelectedIndex].ToString();
+            reactiveTextBox.Text = assumptionsListBox.Items[assumptionsListBox.SelectedIndex].ToString();
             hideResults();
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
             int number = 0;
-            if (textBox2.Text == "")
+            if (textBoxB.Text == "")
             {
-                a.OnNext(number);
+                b.OnNext(number);
             }
-            else if (checkIfStringIsNumber(textBox2.Text))
+            else if (checkIfStringIsNumber(textBoxB.Text))
             {
-                number = int.Parse(textBox2.Text);
-                a.OnNext(number);
+                number = int.Parse(textBoxB.Text);
+                b.OnNext(number);
             }
         }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
             int number = 0;
-            if (textBox3.Text == "")
+            if (textBoxC.Text == "")
             {
-                b.OnNext(number);
+                c.OnNext(number);
             }
-            else if(checkIfStringIsNumber(textBox3.Text))
+            else if(checkIfStringIsNumber(textBoxC.Text))
             {
-                number = int.Parse(textBox3.Text);
-                b.OnNext(number);
+                number = int.Parse(textBoxC.Text);
+                c.OnNext(number);
             }
         }
 
