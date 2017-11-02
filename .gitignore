@@ -1,0 +1,5 @@
+*.suo
+Reactive Text Editor/.vs/Reactive Text Editor/v15/
+Reactive Text Editor/packages/
+Reactive Text Editor/Reactive Text Editor/bin/
+Reactive Text Editor/Reactive Text Editor/obj/
