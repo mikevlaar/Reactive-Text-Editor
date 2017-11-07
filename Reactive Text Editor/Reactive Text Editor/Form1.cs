@@ -62,6 +62,7 @@ namespace Reactive_Text_Editor
                     assumptionsListBox.Visible = true;
                 }
             }
+            //test
         }
 
         void hideResults()
